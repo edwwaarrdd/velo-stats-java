@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 /**
  * Every query against rides lives here.
@@ -14,7 +13,7 @@ import org.springframework.data.repository.query.Param;
  * other ports do and what makes them comparable. The summary is an aggregate returning one row of
  * numbers, so there is nothing to hydrate and it stays a plain query.
  */
-public interface RideRepository extends JpaRepository<Ride, Long> {
+public interface RideRepository extends JpaRepository<Ride, Long>, RideSummaryQueries {
 
     /**
      * Ride ids still awaiting a distance check.
@@ -48,28 +47,4 @@ public interface RideRepository extends JpaRepository<Ride, Long> {
      */
     @Query("SELECT r.checkoutTime FROM Ride r")
     List<LocalDateTime> allCheckoutTimes();
-
-    /**
-     * The aggregates the summary endpoint serves.
-     *
-     * <p>Distance sums and averages skip rides with no cached route, which the left join gives for
-     * free: those rows contribute NULL, and SQL aggregates ignore NULL. The join is on the two station
-     * codes rather than on a relation, because a route belongs to a station pair and not to a ride.
-     */
-    @Query(nativeQuery = true, value = """
-            SELECT
-                COUNT(*) AS totalRides,
-                SUM(r.duration) AS totalDuration,
-                AVG(r.duration) AS averageDuration,
-                MAX(r.duration) AS longestRideDuration,
-                MIN(r.duration) AS shortestRideDuration,
-                SUM(sr.distance_meters) AS totalDistanceMeters,
-                AVG(sr.distance_meters) AS averageDistanceMeters
-            FROM rides r
-            LEFT JOIN station_routes sr
-                ON sr.origin_station_id = r.origin_station_code
-                AND sr.destination_station_id = r.destination_station_code
-                AND sr.mode = :mode
-            """)
-    RideSummaryStats summaryStats(@Param("mode") String mode);
 }

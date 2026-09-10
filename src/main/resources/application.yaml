@@ -32,6 +32,10 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+    # A database seeded by one of the other velo-stats backends already has this exact schema, put
+    # there by that backend's own migration tool. Adopting it rather than refusing it is what lets the
+    # same file be read by any of them.
+    baseline-on-migrate: true
 
   data:
     redis:

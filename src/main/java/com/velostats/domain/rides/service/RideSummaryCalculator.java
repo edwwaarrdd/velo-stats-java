@@ -25,13 +25,13 @@ public class RideSummaryCalculator {
         RideSummaryStats stats = rides.summaryStats(TravelMode.BIKE.value());
 
         return new RideSummaryResponse(
-                stats.getTotalRides(),
-                stats.getTotalDuration(),
-                Round.money(stats.getAverageDuration()),
-                stats.getLongestRideDuration(),
-                stats.getShortestRideDuration(),
-                stats.getTotalDistanceMeters(),
-                Round.money(stats.getAverageDistanceMeters())
+                stats.totalRides(),
+                stats.totalDuration(),
+                Round.money(stats.averageDuration()),
+                stats.longestRideDuration(),
+                stats.shortestRideDuration(),
+                stats.totalDistanceMeters(),
+                Round.money(stats.averageDistanceMeters())
         );
     }
 }
