@@ -18,6 +18,11 @@ RUN mvn -B -q package -DskipTests
 
 FROM eclipse-temurin:25-jre
 
+# curl is what the container health check calls. The base image ships no HTTP client at all.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 
 COPY --from=build /build/target/velo-stats-*.jar /app/velo-stats.jar
@@ -30,7 +35,9 @@ ENV HTTP_PORT=8000 \
     RIDES_JSON_PATH=/app/data/rides.json
 
 # A tiny wrapper, so a command reads the same whether the container is being started or exec'd into.
-RUN printf '#!/bin/sh\nexec java -jar /app/velo-stats.jar "$@"\n' > /usr/local/bin/velo \
+# --enable-native-access is for the SQLite driver, which loads its own native library. Without it the
+# JVM warns on every start, and a future release will refuse the call outright.
+RUN printf '#!/bin/sh\nexec java --enable-native-access=ALL-UNNAMED -jar /app/velo-stats.jar "$@"\n' > /usr/local/bin/velo \
     && chmod +x /usr/local/bin/velo
 
 EXPOSE 8000
