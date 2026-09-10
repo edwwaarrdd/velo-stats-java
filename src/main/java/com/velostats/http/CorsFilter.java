@@ -37,8 +37,15 @@ public class CorsFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         String origin = request.getHeader("Origin");
 
-        if (origin != null && allowedOrigins.contains(origin)) {
-            response.setHeader("Access-Control-Allow-Origin", origin);
+        // The header echoes the configured entry rather than the request's own value, so what
+        // reaches the response provably comes from configuration.
+        String allowedOrigin = allowedOrigins.stream()
+                .filter(candidate -> candidate.equals(origin))
+                .findFirst()
+                .orElse(null);
+
+        if (allowedOrigin != null) {
+            response.setHeader("Access-Control-Allow-Origin", allowedOrigin);
             response.setHeader("Access-Control-Allow-Methods", "*");
             response.setHeader("Access-Control-Allow-Headers", "*");
 
