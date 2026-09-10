@@ -1,0 +1,22 @@
+name: Tests
+
+on: push
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+          # Neither suite touches Redis or the network, so no services are needed here.
+          cache: maven
+
+      - name: Run the test suite
+        run: mvn -B verify

@@ -1,0 +1,10 @@
+# BuildKit prefers <dockerfile>.dockerignore over .dockerignore, which lets the production build copy
+# in the seeded database that the development build skips.
+.DS_Store
+.env
+.git
+.github
+.idea
+target
+database/*.sqlite-shm
+database/*.sqlite-wal

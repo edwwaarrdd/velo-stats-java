@@ -1,0 +1,42 @@
+# Production image: the same jar, with the seeded SQLite database baked in rather than bind-mounted
+# and the JVM told how much of the machine it has.
+#
+# The build context is filtered by Dockerfile.prod.dockerignore, which - unlike the development
+# .dockerignore - lets database/database.sqlite through.
+
+FROM maven:3-eclipse-temurin-25 AS build
+
+WORKDIR /build
+
+COPY pom.xml ./
+RUN mvn -B -q dependency:go-offline
+
+COPY src ./src
+RUN mvn -B -q package -DskipTests
+
+FROM eclipse-temurin:25-jre
+
+WORKDIR /app
+
+COPY --from=build /build/target/velo-stats-*.jar /app/velo-stats.jar
+COPY data/rides.json /app/data/rides.json
+COPY database/database.sqlite /app/database/database.sqlite
+
+ENV APP_ENV=production \
+    HTTP_PORT=8000 \
+    DB_DATABASE=/app/database/database.sqlite \
+    RIDES_JSON_PATH=/app/data/rides.json \
+    LOG_LEVEL=WARN
+
+# The container is capped at four CPUs, and the JVM sizes its thread pools and garbage collector from
+# what it believes it has. Telling it directly keeps the comparison with the other backends honest.
+ENV JAVA_TOOL_OPTIONS="-XX:ActiveProcessorCount=4 -XX:MaxRAMPercentage=75"
+
+# A tiny wrapper, so a command reads the same whether the container is being started or exec'd into.
+RUN printf '#!/bin/sh\nexec java -jar /app/velo-stats.jar "$@"\n' > /usr/local/bin/velo \
+    && chmod +x /usr/local/bin/velo
+
+EXPOSE 8000
+
+ENTRYPOINT ["velo"]
+CMD ["serve"]

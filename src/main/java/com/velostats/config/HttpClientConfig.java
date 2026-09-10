@@ -25,6 +25,12 @@ public class HttpClientConfig {
         );
         requestFactory.setReadTimeout(TIMEOUT);
 
-        return RestClient.builder().requestFactory(requestFactory).build();
+        return RestClient.builder()
+                .requestFactory(requestFactory)
+                // Uncompressed on purpose. These responses are small, and one of the three upstreams
+                // answers gzip that the client then fails to inflate, so asking for plain text costs
+                // nothing and removes a decode step the application has no use for.
+                .defaultHeader("Accept-Encoding", "identity")
+                .build();
     }
 }

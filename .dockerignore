@@ -1,0 +1,9 @@
+.DS_Store
+.env
+.git
+.github
+.idea
+target
+database/*.sqlite
+database/*.sqlite-shm
+database/*.sqlite-wal
