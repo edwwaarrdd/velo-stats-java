@@ -1,0 +1,18 @@
+# The database url is replaced per test class with a throwaway file. Redis is configured but never
+# reached: the queue tests call their handler directly rather than going through a worker.
+spring:
+  main:
+    banner-mode: off
+
+velo:
+  cors-allowed-origins: http://localhost:5173
+  rides-json-path: data/rides.json
+  queue-prefix: "velo-stats-test:queues:"
+  upstream:
+    station-information-url: https://feed.invalid/station_information.json
+    osrm-base-url: https://osrm.invalid
+    open-meteo-archive-url: https://meteo.invalid/archive
+
+logging:
+  level:
+    root: WARN
