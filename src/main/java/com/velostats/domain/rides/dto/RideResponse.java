@@ -10,9 +10,6 @@ import com.velostats.support.ApiDateTime;
 import com.velostats.support.Round;
 import java.time.Duration;
 
-/**
- * A ride as the API publishes it, including the four figures that are derived rather than stored.
- */
 @JsonPropertyOrder({
         "ride_id",
         "account_id",
@@ -88,9 +85,7 @@ public record RideResponse(
     }
 
     /**
-     * How long the bike was actually out, to the second.
-     *
-     * <p>The stored duration is whole minutes, which is too coarse for anything derived from it.
+     * The stored duration is whole minutes, which is too coarse for anything derived from it.
      */
     private static Double actualDurationSeconds(Ride ride) {
         return Round.money(Duration.between(ride.checkoutTime(), ride.checkinTime()).toSeconds());

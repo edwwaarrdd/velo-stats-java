@@ -16,9 +16,7 @@ import jakarta.persistence.UniqueConstraint;
 import java.time.LocalDateTime;
 
 /**
- * A cached route between two stations for one travel mode.
- *
- * <p>The upstream routing service is free and rate-limited, and the answer for a pair of fixed
+ * The upstream routing service is free and rate-limited, and the answer for a pair of fixed
  * docking stations never changes, so every lookup is stored here and never asked for twice. The
  * unique constraint is the cache key.
  */

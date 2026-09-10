@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import tools.jackson.databind.JsonNode;
 
-/**
- * Reads the operator's public GBFS station information feed.
- */
 @Service
 public class VeloAntwerpStationInformationService implements StationInformationService {
 

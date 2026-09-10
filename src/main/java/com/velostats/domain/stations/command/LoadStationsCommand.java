@@ -12,9 +12,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Loads the docking stations from the operator feed.
- */
 @Component
 public class LoadStationsCommand implements ConsoleCommand {
 
@@ -65,8 +62,6 @@ public class LoadStationsCommand implements ConsoleCommand {
     }
 
     /**
-     * Insert the station, or update the one already stored under this id.
-     *
      * @return whether a station was created rather than updated
      */
     private boolean upsert(StationInformation information) {

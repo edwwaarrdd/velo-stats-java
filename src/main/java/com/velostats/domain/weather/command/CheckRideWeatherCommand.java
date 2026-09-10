@@ -9,9 +9,6 @@ import com.velostats.queue.RedisQueue;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
-/**
- * Queues a weather lookup for every ride that has not had one.
- */
 @Component
 public class CheckRideWeatherCommand implements ConsoleCommand {
 

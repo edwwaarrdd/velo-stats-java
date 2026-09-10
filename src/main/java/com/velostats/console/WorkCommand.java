@@ -4,9 +4,6 @@ import com.velostats.queue.QueueWorker;
 import com.velostats.queue.Queues;
 import org.springframework.stereotype.Component;
 
-/**
- * Runs a queue worker until the process is stopped.
- */
 @Component
 public class WorkCommand implements ConsoleCommand {
 

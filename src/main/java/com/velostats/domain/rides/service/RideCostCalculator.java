@@ -14,9 +14,6 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * What the rides actually cost, and what they would have cost on the two pay-as-you-go alternatives.
- */
 @Service
 public class RideCostCalculator {
 

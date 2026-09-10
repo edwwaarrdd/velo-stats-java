@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * A read-through cache in front of the weather service, keyed by ride.
- *
- * <p>Historical weather never changes, so a ride is looked up once. The force flag exists for the case
+ * Historical weather never changes, so a ride is looked up once. The force flag exists for the case
  * where the stored observation is wrong rather than stale.
  */
 @Service

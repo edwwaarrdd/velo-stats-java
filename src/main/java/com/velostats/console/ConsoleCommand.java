@@ -1,9 +1,7 @@
 package com.velostats.console;
 
 /**
- * One console command.
- *
- * <p>Every implementation is a bean, so adding a command means adding one class and changing nothing
+ * Every implementation is a bean, so adding a command means adding one class and changing nothing
  * else: the dispatcher finds it by the name it reports.
  */
 public interface ConsoleCommand {
@@ -13,9 +11,6 @@ public interface ConsoleCommand {
      */
     String name();
 
-    /**
-     * The one-line description shown in the usage listing.
-     */
     String description();
 
     /**

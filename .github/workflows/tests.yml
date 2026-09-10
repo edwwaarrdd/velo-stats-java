@@ -15,7 +15,6 @@ jobs:
         with:
           distribution: temurin
           java-version: '25'
-          # Neither suite touches Redis or the network, so no services are needed here.
           cache: maven
 
       - name: Run the test suite

@@ -9,9 +9,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
- * The single entry point: the API, the workers and every console command.
- *
- * <p>The first argument decides which. {@code serve}, or no argument at all, starts the HTTP server;
+ * The first argument decides which. {@code serve}, or no argument at all, starts the HTTP server;
  * anything else runs that console command with no web server underneath it and exits with its status.
  * Migrations run on start either way, so a fresh container needs no manual setup.
  */

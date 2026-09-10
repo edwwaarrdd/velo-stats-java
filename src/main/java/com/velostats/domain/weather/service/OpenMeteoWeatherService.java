@@ -12,15 +12,9 @@ import org.springframework.web.client.RestClient;
 import org.springframework.web.util.UriComponentsBuilder;
 import tools.jackson.databind.JsonNode;
 
-/**
- * Reads historical weather from the free Open-Meteo archive.
- */
 @Service
 public class OpenMeteoWeatherService implements WeatherService {
 
-    /**
-     * The variables to request, using Open-Meteo's names for them.
-     */
     public static final List<String> HOURLY_VARIABLES = List.of(
             "temperature_2m",
             "apparent_temperature",

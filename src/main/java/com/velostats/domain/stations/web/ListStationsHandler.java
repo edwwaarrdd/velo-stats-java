@@ -7,9 +7,6 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Every known docking station, with just enough to place it on a map.
- */
 @RestController
 public class ListStationsHandler {
 

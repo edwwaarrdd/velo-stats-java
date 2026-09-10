@@ -14,9 +14,7 @@ import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
 /**
- * One completed hire, as exported by the operator.
- *
- * <p>The station columns hold codes rather than a relation, and there is deliberately no foreign key
+ * The station columns hold codes rather than a relation, and there is deliberately no foreign key
  * to stations: the export contains rides from stations that have since been retired, and those rides
  * still have to load. The background checks treat an unknown code as a logged non-event.
  */

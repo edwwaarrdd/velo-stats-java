@@ -1,8 +1,5 @@
 package com.velostats.domain.routing.entity;
 
-/**
- * The travel profile a route is asked for.
- */
 public enum TravelMode {
 
     FOOT("foot", "routed-foot"),
@@ -24,9 +21,7 @@ public enum TravelMode {
     }
 
     /**
-     * The path segment naming the OSRM instance to route against.
-     *
-     * <p>The demo server at router.project-osrm.org only hosts the car profile and silently ignores
+     * The demo server at router.project-osrm.org only hosts the car profile and silently ignores
      * the profile named in the URL, so every mode came back with car driving times. FOSSGIS runs a
      * separate instance per profile, and the profile is selected by this path rather than by the URL
      * segment.

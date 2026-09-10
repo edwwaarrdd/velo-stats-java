@@ -5,9 +5,6 @@ import com.velostats.domain.rides.service.RideSummaryCalculator;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Totals and averages across the whole ride history.
- */
 @RestController
 public class RideSummaryHandler {
 

@@ -5,9 +5,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.simple.JdbcClient;
 
 /**
- * The summary aggregate, read column by column.
- *
- * <p>Plain JDBC rather than a mapped projection, because SQLite reports a computed REAL column as a
+ * Plain JDBC rather than a mapped projection, because SQLite reports a computed REAL column as a
  * 32-bit float in its result set metadata. Letting the mapper follow that would round a distance
  * total of 279220.6 metres to 279220.59375 on the way out. Asking for a double explicitly reads the
  * value SQLite actually computed.

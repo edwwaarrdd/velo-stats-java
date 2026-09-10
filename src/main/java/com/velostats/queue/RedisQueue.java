@@ -8,9 +8,7 @@ import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.json.JsonMapper;
 
 /**
- * The Redis-backed queue the background checks travel on.
- *
- * <p>A job is a small JSON envelope pushed onto a list and taken off the other end, so a queue is
+ * A job is a small JSON envelope pushed onto a list and taken off the other end, so a queue is
  * first-in first-out and a worker that blocks on it wakes the moment work arrives.
  */
 @Component
@@ -33,9 +31,7 @@ public class RedisQueue {
     }
 
     /**
-     * Waits up to {@code timeout} for the next job on the queue, returning null when none arrives.
-     *
-     * <p>Blocking rather than polling is what lets a worker sit idle at no cost and still pick work up
+     * Blocking rather than polling is what lets a worker sit idle at no cost and still pick work up
      * immediately.
      */
     public Job take(String queue, Duration timeout) {

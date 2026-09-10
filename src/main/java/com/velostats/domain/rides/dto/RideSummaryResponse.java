@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * Totals and averages across the whole ride history.
- *
- * <p>Every figure but the count is nullable, and reports null rather than zero when there is nothing
+ * Every figure but the count is nullable, and reports null rather than zero when there is nothing
  * to average: an empty history and a history of zero-length rides are different things.
  */
 @JsonPropertyOrder({

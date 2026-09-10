@@ -8,9 +8,7 @@ import org.springframework.http.client.JdkClientHttpRequestFactory;
 import org.springframework.web.client.RestClient;
 
 /**
- * The client every upstream call goes through.
- *
- * <p>The timeouts are the point: all three services are free and public, and a worker that hangs on
+ * The timeouts are the point: all three services are free and public, and a worker that hangs on
  * one of them stops draining its queue entirely.
  */
 @Configuration

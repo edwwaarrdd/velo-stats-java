@@ -3,9 +3,6 @@ package com.velostats.domain.rides.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
-/**
- * What the subscription cost per ride, against what pay-as-you-go would have.
- */
 @JsonPropertyOrder({
         "total_rides",
         "first_ride_date",

@@ -7,9 +7,6 @@ import java.util.Map;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Every ride, newest first, with its cached distance and weather.
- */
 @RestController
 public class ListRidesHandler {
 

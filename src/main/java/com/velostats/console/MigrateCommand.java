@@ -3,9 +3,7 @@ package com.velostats.console;
 import org.springframework.stereotype.Component;
 
 /**
- * Creates the database schema.
- *
- * <p>Migrations run on start in every mode, so by the time this command's body executes the work is
+ * Migrations run on start in every mode, so by the time this command's body executes the work is
  * already done. It exists so that a container can migrate and exit without also serving or working.
  */
 @Component

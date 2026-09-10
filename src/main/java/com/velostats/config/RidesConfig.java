@@ -7,9 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * The configured ride export.
- *
- * <p>Declared here rather than as a component, because the reader takes a path rather than the
+ * Declared here rather than as a component, because the reader takes a path rather than the
  * settings object: the same class serves the configured export and the one named by
  * {@code rides:load --path}.
  */

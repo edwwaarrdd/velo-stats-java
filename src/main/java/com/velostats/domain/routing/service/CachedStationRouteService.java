@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * A read-through cache in front of the routing service.
- *
- * <p>Docking stations do not move, so the route between any two of them is answered once and stored
+ * Docking stations do not move, so the route between any two of them is answered once and stored
  * forever. This is what keeps the free upstream service usable at all.
  */
 @Service

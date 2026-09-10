@@ -1,9 +1,3 @@
-# Production image: the same jar, with the seeded SQLite database baked in rather than bind-mounted
-# and the JVM told how much of the machine it has.
-#
-# The build context is filtered by Dockerfile.prod.dockerignore, which - unlike the development
-# .dockerignore - lets database/database.sqlite through.
-
 FROM maven:3-eclipse-temurin-25 AS build
 
 WORKDIR /build

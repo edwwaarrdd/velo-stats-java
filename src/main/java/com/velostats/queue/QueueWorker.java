@@ -9,9 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * Drains one queue, one job at a time.
- *
- * <p>Single-threaded on purpose: the two check queues call free public APIs, and handling one job to
+ * Single-threaded on purpose: the two check queues call free public APIs, and handling one job to
  * completion before taking the next is what keeps those calls from ever overlapping.
  *
  * <p>There are no retries. A failure is logged, and the ride's {@code distance_checked_at} or
@@ -37,9 +35,6 @@ public class QueueWorker {
         }
     }
 
-    /**
-     * Runs until the process is interrupted.
-     */
     public void run(String queueName) {
         log.info("Worker started on queue {}", queueName);
 

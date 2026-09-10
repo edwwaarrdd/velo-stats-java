@@ -9,9 +9,6 @@ import com.velostats.queue.RedisQueue;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
-/**
- * Queues a cycling distance lookup for every ride that has not had one.
- */
 @Component
 public class CheckRideDistancesCommand implements ConsoleCommand {
 

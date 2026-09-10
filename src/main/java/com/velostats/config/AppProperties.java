@@ -4,8 +4,6 @@ import java.util.List;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * Everything this application reads from the environment, in one place.
- *
  * @param corsAllowedOrigins origins allowed to call the API
  * @param ridesJsonPath      path to the rides JSON export
  * @param queuePrefix        prefix for the queue keys in Redis

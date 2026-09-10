@@ -5,9 +5,6 @@ import com.velostats.domain.rides.service.RideCostCalculator;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * What the subscription cost per ride, against what pay-as-you-go would have.
- */
 @RestController
 public class RideCostHandler {
 

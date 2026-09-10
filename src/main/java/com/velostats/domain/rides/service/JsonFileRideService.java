@@ -11,9 +11,6 @@ import java.util.Map;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
 
-/**
- * Reads the ride history from the operator's JSON export.
- */
 public class JsonFileRideService implements RideDataSource {
 
     /**

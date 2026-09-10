@@ -10,9 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 /**
- * Runs the command named by the first argument, then exits with its status.
- *
- * <p>Only registered when the application is started in console mode, so the API process never has a
+ * Only registered when the application is started in console mode, so the API process never has a
  * command running underneath it.
  */
 @Component
@@ -62,9 +60,6 @@ public class ConsoleRunner {
                 ));
     }
 
-    /**
-     * Runs the command and stops the application with its exit code.
-     */
     public static void runAndExit(ApplicationContext context, String[] arguments) {
         int status = context.getBean(ConsoleRunner.class).run(arguments);
 

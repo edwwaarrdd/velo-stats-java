@@ -12,9 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Assembles the ride list the API serves.
- *
- * <p>A route belongs to a pair of station codes rather than to a ride, so it cannot be a relation on
+ * A route belongs to a pair of station codes rather than to a ride, so it cannot be a relation on
  * the entity and cannot be joined as one. Loading the cached routes once and matching them in memory
  * keeps the endpoint to two queries however many rides there are.
  */

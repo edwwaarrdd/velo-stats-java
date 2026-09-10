@@ -14,9 +14,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Loads the ride history from the JSON export.
- */
 @Component
 public class LoadRidesCommand implements ConsoleCommand {
 
@@ -67,9 +64,7 @@ public class LoadRidesCommand implements ConsoleCommand {
     }
 
     /**
-     * Insert the ride, or update the one already stored under this id.
-     *
-     * <p>The two check timestamps are deliberately not part of the record, so re-importing the export
+     * The two check timestamps are deliberately not part of the record, so re-importing the export
      * never queues work that has already been done.
      *
      * @return whether a ride was created rather than updated

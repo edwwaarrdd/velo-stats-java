@@ -10,9 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import tools.jackson.databind.JsonNode;
 
-/**
- * Routes between two points using a public OSRM instance.
- */
 @Service
 public class OsrmRouteService implements RouteService {
 

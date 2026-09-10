@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.velostats.domain.weather.entity.WeatherRecord;
 import com.velostats.support.ApiDateTime;
 
-/**
- * A weather record as the API publishes it.
- */
 @JsonPropertyOrder({
         "temperature_c",
         "apparent_temperature_c",

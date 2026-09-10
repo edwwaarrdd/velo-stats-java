@@ -13,9 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
- * Cross-origin access for the browser client.
- *
- * <p>The policy is the same across every velo-stats backend: a configured list of origins, any
+ * The policy is the same across every velo-stats backend: a configured list of origins, any
  * method, any header, no credentials. That is small enough to express directly, and doing so keeps
  * the origin list readable from the environment.
  */

@@ -6,9 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * The options given after the command name.
- *
- * <p>Both {@code --path=value} and {@code --path value} are accepted, and a bare {@code --force} is a
+ * Both {@code --path=value} and {@code --path value} are accepted, and a bare {@code --force} is a
  * flag. This is deliberately the whole parser: no command here takes anything more elaborate.
  */
 public final class CommandArguments {
