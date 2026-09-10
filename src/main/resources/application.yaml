@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: velo-stats
+
+  main:
+    # The console commands run after the context is built, so nothing should print a banner in front
+    # of their output.
+    banner-mode: ${BANNER_MODE:off}
+
+  datasource:
+    # SQLite has no busy timeout by default, so a worker that finds the database locked fails instead
+    # of waiting. Write-ahead logging is switched on by the second migration, because that setting
+    # lives in the database file itself rather than on the connection.
+    url: jdbc:sqlite:${DB_DATABASE:database/database.sqlite}?busy_timeout=5000&foreign_keys=on
+    driver-class-name: org.sqlite.JDBC
+    hikari:
+      # SQLite admits one writer at a time, so a large pool buys nothing and costs lock contention.
+      maximum-pool-size: ${DB_POOL_SIZE:4}
+      pool-name: velo-stats
+
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    open-in-view: false
+    hibernate:
+      # Flyway owns the schema. Hibernate must never touch it.
+      ddl-auto: none
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:6379}
+      password: ${REDIS_PASSWORD:}
+      database: ${REDIS_DB:0}
+
+server:
+  port: ${HTTP_PORT:8000}
+
+velo:
+  cors-allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+  rides-json-path: ${RIDES_JSON_PATH:data/rides.json}
+  queue-prefix: ${QUEUE_PREFIX:velo-stats:queues:}
+  upstream:
+    station-information-url: ${VELO_ANTWERP_STATION_INFORMATION_URL:https://gbfs.smartbike.com/antwerp/1.0/en/station_information.json}
+    osrm-base-url: ${OSRM_BASE_URL:https://routing.openstreetmap.de}
+    open-meteo-archive-url: ${OPEN_METEO_ARCHIVE_URL:https://archive-api.open-meteo.com/v1/archive}
+
+logging:
+  level:
+    root: ${LOG_LEVEL:INFO}
