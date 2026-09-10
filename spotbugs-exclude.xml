@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter xmlns="https://github.com/spotbugs/filter/3.1.0">
+    <!--
+        Defensive copying does not apply to what this application stores in fields: Spring-injected
+        collaborators such as RestClient and StringRedisTemplate are singletons that are meant to be
+        shared, and a JPA relation is meant to hand back the managed entity rather than a copy.
+    -->
+    <Match>
+        <Bug pattern="EI_EXPOSE_REP,EI_EXPOSE_REP2"/>
+    </Match>
+</FindBugsFilter>
