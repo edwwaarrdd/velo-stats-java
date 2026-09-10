@@ -1,0 +1,26 @@
+name: Lint
+
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+
+      - name: Check the formatting
+        run: mvn -B spotless:check
+
+      - name: Analyse
+        # SpotBugs reads compiled classes, and is not bound to a lifecycle phase, so the
+        # sources are compiled here rather than as a side effect of the test build.
+        run: mvn -B compile spotbugs:check
